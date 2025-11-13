@@ -121,6 +121,7 @@
       zed-editor
       nushell
       insomnia
+      typst
       # JS
       nodejs_20
       bun
