@@ -108,7 +108,7 @@
       # Gnome
       gnome-tweaks
       gnomeExtensions.launch-new-instance
-      gnomeExtensions.gnomeExtensions.caffeine
+      gnomeExtensions.caffeine
       # Note-taking
       obsidian
       # Communication
@@ -138,6 +138,7 @@
       bacon
       # Nix
       nixd
+      nil
       # Media
       makemkv
       jellyfin-media-player
