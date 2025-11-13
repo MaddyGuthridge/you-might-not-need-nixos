@@ -1,2 +1,18 @@
-# i-might-not-need-nixos
+# I might not need NixOS
+
 But that won't stop me from trying it out!
+
+This repository contains my NixOS configuration, which I
+am currently in the process of writing.
+
+## Todos
+
+- [x] Installation of basic tools
+- [ ] Installation of non-Nix-packaged tools
+  - [ ] Flatpak
+  - [ ] `uv`
+  - [ ] `npm`
+  - [ ] Gnome extensions
+- [ ] `home-manager` to configure many apps
+- [ ] What the f*ck is a flake?
+  - [ ] Let's make one for UNSW's `dcc` compiler
