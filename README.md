@@ -20,6 +20,7 @@ am currently in the process of writing.
     - [ ] Basic themes
   - [ ] Git
   - [ ] Dotfiles
+  - [ ] Autostart applications
 - [ ] What the f*ck is a flake?
   - [ ] How do I install one?
   - [ ] Let's make one for UNSW's `dcc` compiler

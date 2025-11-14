@@ -4,11 +4,26 @@
 
 { config, pkgs, ... }:
 
+let
+  # Add the unstable channel declaratively
+  unstableTarball =
+    fetchTarball
+      "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+
+  nixpkgs.config = {
+    packageOverrides = pkgs: with pkgs; {
+        unstable = import unstableTarball {
+        config = config.nixpkgs.config;
+      };
+    };
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -109,26 +124,38 @@
       gnome-tweaks
       gnomeExtensions.launch-new-instance
       gnomeExtensions.caffeine
+      gnomeExtensions.appindicator
+      gnomeExtensions.blur-my-shell
+      gnomeExtensions.pip-on-top
+      gnomeExtensions.gsconnect
+      gnomeExtensions.hide-minimized
+      gnomeExtensions.lock-keys
+      gnomeExtensions.just-perfection
+      gnomeExtensions.rounded-window-corners-reborn
+      gnomeExtensions.panel-workspace-scroll
       # Note-taking
-      obsidian
+      unstable.obsidian
+      libreoffice-qt6-fresh
       # Communication
       thunderbird
-      teams-for-linux
+      unstable.teams-for-linux
+      unstable.discord
       slack
       zoom-us
       signal-desktop
       # Programming
       ghostty
-      vscode
-      zed-editor
-      nushell
+      unstable.vscode
+      unstable.zed-editor
+      unstable.nushell
       insomnia
-      typst
+      unstable.typst
+      # mise  # I muse resist the temptation
       # JS
       nodejs_20
-      bun
+      unstable.bun
       # Python
-      uv
+      unstable.uv
       poetry
       # Java
       jdk17
@@ -140,7 +167,8 @@
       nixd
       nil
       # Media
-      makemkv
+      unstable.makemkv
+      vlc
       jellyfin-media-player
       mkvtoolnix
     ];
@@ -161,7 +189,7 @@
     usbutils
     git
     hack-font
-    cloudflared
+    unstable.cloudflared
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
