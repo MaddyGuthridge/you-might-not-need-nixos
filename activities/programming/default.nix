@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
+    ./c.nix
     ./java.nix
     ./js.nix
     ./nix.nix
