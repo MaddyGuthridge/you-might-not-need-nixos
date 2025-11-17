@@ -7,21 +7,18 @@
 let
   # Add the unstable channel declaratively
   unstableTarball = fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-
-  # https://discourse.nixos.org/t/new-to-nixos-and-cant-play-blu-rays/62560/5
-  # https://github.com/NixOS/nixpkgs/issues/75646#issuecomment-1832829819
-  libbluray = pkgs.libbluray.override {
-    withAACS = true;
-    withBDplus = true;
-    withJava = true;
-  };
-  vlcBd = pkgs.vlc.override { inherit libbluray; };
-  handbrakeBd = pkgs.handbrake.override { inherit libbluray; };
 in
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    # Include environment configuration
+    ./environments/gnome.nix
+    # Include activities
+    ./activities/communication.nix
+    ./activities/documents.nix
+    ./activities/media.nix
+    ./activities/programming
   ];
 
   nixpkgs.config = {
@@ -47,11 +44,6 @@ in
     };
   };
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelModules = [
-    # Required for makemkv to work correctly
-    # https://discourse.nixos.org/t/makemkv-cant-find-my-usb-blu-ray-drive/23714/4
-    "sg"
-  ];
 
   # Additional file systems
   fileSystems."/media/yzma" = {
@@ -126,81 +118,14 @@ in
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.maddy =
-    let
-      # Use Gradle 8.8
-      archivePkgs = import (builtins.fetchTarball {
-        url = "https://github.com/NixOS/nixpkgs/archive/d9f258945d3532e399d7f73fcd9b6fa5b4393e01.tar.gz";
-      }) { };
-      gradle_8_8 = archivePkgs.gradle_8;
-    in
-    {
-      isNormalUser = true;
-      description = "Maddy Guthridge";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-      ];
-      packages = with pkgs; [
-        # Gnome
-        gnome-tweaks
-        gnomeExtensions.launch-new-instance
-        gnomeExtensions.caffeine
-        gnomeExtensions.appindicator
-        gnomeExtensions.blur-my-shell
-        gnomeExtensions.pip-on-top
-        gnomeExtensions.gsconnect
-        gnomeExtensions.hide-minimized
-        gnomeExtensions.lock-keys
-        gnomeExtensions.just-perfection
-        gnomeExtensions.rounded-window-corners-reborn
-        gnomeExtensions.panel-workspace-scroll
-        gnomeExtensions.middle-click-to-close-in-overview
-        gnomeExtensions.pano
-        wl-clipboard
-        # Note-taking
-        unstable.obsidian
-        libreoffice-qt6-fresh
-        # Communication
-        unstable.thunderbird
-        unstable.teams-for-linux
-        unstable.discord
-        slack
-        zoom-us
-        signal-desktop
-        # Programming
-        ghostty
-        unstable.vscode
-        unstable.zed-editor
-        unstable.nushell
-        insomnia
-        unstable.typst
-        android-tools
-        # mise  # I muse resist the temptation
-        # JS
-        nodejs_20
-        unstable.bun
-        # Python
-        unstable.uv
-        poetry
-        # Java
-        jdk17
-        gradle_8_8
-        jdt-language-server
-        # Rust
-        rustup
-        bacon
-        # Nix
-        nil
-        nixfmt-rfc-style
-        # Media
-        unstable.makemkv
-        vlcBd
-        jellyfin-media-player
-        mkvtoolnix
-        handbrakeBd
-      ];
-    };
+  users.users.maddy = {
+    isNormalUser = true;
+    description = "Maddy Guthridge";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+  };
 
   # Allow running arbitrary executables
   # https://nix.dev/guides/faq#how-to-run-non-nix-executables
