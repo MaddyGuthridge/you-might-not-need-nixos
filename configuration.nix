@@ -23,12 +23,17 @@ in
 
   nixpkgs.config = {
     packageOverrides =
-      pkgs: with pkgs; {
+      pkgs: {
         unstable = import unstableTarball {
           config = config.nixpkgs.config;
         };
       };
   };
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot = {
