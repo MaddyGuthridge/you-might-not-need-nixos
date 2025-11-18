@@ -5,14 +5,14 @@ But that won't stop me from trying it out!
 This repository contains my NixOS configuration, which I
 am currently in the process of writing.
 
+I will also add slides for my talk once I get around to writing it.
+
 ## Todos
 
 - [x] Installation of basic tools
 - [ ] Installation of non-Nix-packaged tools
-  - [ ] Flatpak
-  - [ ] `uv`
+  - [x] `uv`
   - [ ] `npm`
-  - [ ] Gnome extensions
 - [ ] `home-manager` to configure many apps
   - [ ] Gnome
     - [ ] Keyboard shortcuts
@@ -21,6 +21,6 @@ am currently in the process of writing.
   - [ ] Git
   - [ ] Dotfiles
   - [ ] Autostart applications
-- [ ] What the f*ck is a flake?
-  - [ ] How do I install one?
+- [x] What the f*ck is a flake?
+  - [x] How do I install one?
   - [ ] Let's make one for UNSW's `dcc` compiler
