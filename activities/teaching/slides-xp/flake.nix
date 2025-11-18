@@ -91,7 +91,7 @@
       );
 
       packages = forAllSystems (system: {
-        default = pythonSets.${system}.mkVirtualEnv "hello-world-env" workspace.deps.default;
+        default = pythonSets.${system}.mkVirtualEnv "hello" workspace.deps.default;
       });
     };
 }
