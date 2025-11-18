@@ -2,6 +2,7 @@
 {
   imports = [
     ./c.nix
+    ./docker.nix
     ./java.nix
     ./js.nix
     ./nix.nix
