@@ -2,6 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     gcc
+    gdb
     clang
     clang-tools
     libxcrypt

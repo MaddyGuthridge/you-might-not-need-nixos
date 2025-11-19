@@ -19,12 +19,11 @@ in
   ];
 
   nixpkgs.config = {
-    packageOverrides =
-      pkgs: {
-        unstable = import unstableTarball {
-          config = config.nixpkgs.config;
-        };
+    packageOverrides = pkgs: {
+      unstable = import unstableTarball {
+        config = config.nixpkgs.config;
       };
+    };
   };
 
   nix.settings.experimental-features = [
@@ -149,6 +148,7 @@ in
     git
     hack-font
     unstable.cloudflared
+    zip
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
