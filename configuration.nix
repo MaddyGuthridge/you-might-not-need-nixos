@@ -151,6 +151,7 @@ in
     hack-font
     unstable.cloudflared
     zip
+    mission-center
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
