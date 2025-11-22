@@ -4,4 +4,4 @@
 set -euo pipefail
 
 sudo cp -r ./configuration.nix activities environments hardware /etc/nixos
-sudo nixos-rebuild switch --show-trace
+sudo time -f "Done in %e seconds" nixos-rebuild switch --show-trace
