@@ -6,4 +6,7 @@
 
     input-remapper
   ];
+
+  # BRO WHY DOES THIS NOT WORK
+  # services.input-remapper.enable = true;
 }
