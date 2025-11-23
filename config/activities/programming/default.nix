@@ -18,6 +18,6 @@
     insomnia
     unstable.typst
     android-tools
-    mise
+    unstable.mise
   ];
 }
